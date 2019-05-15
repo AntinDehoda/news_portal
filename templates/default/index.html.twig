@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section class="top-posts">
+            {% for post in posts|slice(0, 1) %}
+            <article class="main-post top-post">
+                <a href="#" class="category-link">{{ post.category.name }}</a>
+                <a href="/post/{{ post.id }}">
+                    <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
+                </a>
+                <a href="/post/{{ post.id }}" class="post-link">
+                    <h1>{{ post.title }}</h1>
+                </a>
+                <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
+                <p>{{ post.shortDescription }}</p>
+                <div class="clearfix"></div>
+            </article>
+            {% endfor %}
+
+            <div class="row posts">
+                <div class="col"></div>
+                {% for post in posts|slice(1, 3) %}
+                <div class="col-3">
+                    <article class="post top-post">
+                        <a href="#" class="category-link">{{ post.category.name }}</a>
+                        <a href="/post/{{ post.id }}">
+                            <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
+                        </a>
+                        <a href="/post/{{ post.id }}" class="post-link">
+                            <h3>{{ post.title }}</h3>
+                        </a>
+                        <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
+                        <p>{{ post.shortDescription }}</p>
+                    </article>
+                </div>
+                {% endfor %}
+                <div class="col"></div>
+            </div>
+        </section>
+        <section class="regular-posts">
+        {% for post in posts|slice(4, 9) %}
+            <article class="post">
+                <a href="#" class="category-link">{{ post.category.name }}</a>
+                <a href="/post/{{ post.id }}"><h4>{{ post.title }}</h4></a>
+                <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
+            </article>
+        {% endfor %}
+        </section>
+    </div>
+{% endblock %}
