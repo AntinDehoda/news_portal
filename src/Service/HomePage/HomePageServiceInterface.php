@@ -3,8 +3,16 @@
 namespace App\Service\HomePage;
 
 use App\Collection\PostCollection;
+use App\Model\Post;
 
+/**
+ * Interface for retrieving posts data for a home-page.
+ *
+ * @author Anton Degoda <dehoda@ukr.net>
+ */
 interface HomePageServiceInterface
 {
     public function getPosts(): PostCollection;
+    public function getMainPost(): Post;
+    public function getTopPosts(): PostCollection;
 }

@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Controller to display the single-post page
+ * Controller to display post data in the single-post page
  *
  * @Route("/post/{id}")
  *

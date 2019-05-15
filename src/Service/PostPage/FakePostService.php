@@ -9,18 +9,13 @@ use App\Model\Post;
 use Faker\Factory;
 
 /**
- * This class generates test data based on post id for a single-post page.
+ * This class generates fake post information based on post id for a single-post page.
  *
  * @author Anton Degoda <dehoda@ukr.net>
  */
 
 class FakePostService implements PostServiceInterface
 {
-
-    /**
-     * @param int
-     * @return Post object
-     */
     public function getPost(int $id): Post
     {
         $faker = Factory::create();

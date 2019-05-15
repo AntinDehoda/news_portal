@@ -7,24 +7,22 @@
 {% block body %}
     <div class="container">
         <section class="top-posts">
-            {% for post in posts|slice(0, 1) %}
             <article class="main-post top-post">
-                <a href="#" class="category-link">{{ post.category.name }}</a>
-                <a href="/post/{{ post.id }}">
+                <a href="#" class="category-link">{{ mainpost.category.name }}</a>
+                <a href="/post/{{ mainpost.id }}">
                     <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
                 </a>
-                <a href="/post/{{ post.id }}" class="post-link">
-                    <h1>{{ post.title }}</h1>
+                <a href="/post/{{ mainpost.id }}" class="post-link">
+                    <h1>{{ mainpost.title }}</h1>
                 </a>
-                <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
-                <p>{{ post.shortDescription }}</p>
+                <time>{{ mainpost.publicationDate | date('d-m-Y H:i') }}</time>
+                <p>{{ mainpost.shortDescription }}</p>
                 <div class="clearfix"></div>
             </article>
-            {% endfor %}
 
             <div class="row posts">
                 <div class="col"></div>
-                {% for post in posts|slice(1, 3) %}
+                {% for post in topposts %}
                 <div class="col-3">
                     <article class="post top-post">
                         <a href="#" class="category-link">{{ post.category.name }}</a>
