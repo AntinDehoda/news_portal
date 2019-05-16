@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service\PostPage;
-
 
 use App\Model\Post;
 
@@ -11,8 +9,6 @@ use App\Model\Post;
  *
  * @author Anton Degoda <dehoda@ukr.net>
  */
-
 interface PostServiceInterface
-{
-    public function getPost(int $id): Post;
+{    public function getPost(int $id): Post;
 }
