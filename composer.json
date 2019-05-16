@@ -1,6 +1,14 @@
 {
+    "name": "antindehoda/news_portal",
+    "description": "",
     "type": "project",
-    "license": "proprietary",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Anton Dehoda",
+            "email": "dehoda@ukr.net"
+        }
+    ],
     "require": {
         "php": "^7.3",
         "ext-ctype": "*",
