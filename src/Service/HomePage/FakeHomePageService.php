@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 /*
+ *
  * (c) Anton Dehoda <dehoda@ukr.net>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -59,9 +60,9 @@ final class FakeHomePageService implements HomePageServiceInterface
     private function generatePost(): Post
     {
         $post = new Post(
-                $this->faker->randomNumber(),
-                new Category($this->faker->sentence),
-                $this->faker->sentence
+            $this->faker->randomNumber(),
+            new Category($this->faker->sentence),
+            $this->faker->sentence
             );
         $post
                 ->setImage($this->faker->imageUrl())

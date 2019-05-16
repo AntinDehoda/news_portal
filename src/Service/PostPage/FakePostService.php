@@ -1,6 +1,7 @@
 <?php
 
 /*
+ *
  * (c) Anton Dehoda <dehoda@ukr.net>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -25,9 +26,9 @@ class FakePostService implements PostServiceInterface
         $faker = Factory::create();
 
         $post = new Post(
-                $id,
-                new Category($faker->word),
-                $faker->sentence
+            $id,
+            new Category($faker->word),
+            $faker->sentence
             );
         $post
                 ->setImage($faker->imageUrl())
