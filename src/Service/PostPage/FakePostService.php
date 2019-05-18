@@ -13,6 +13,7 @@ namespace App\Service\PostPage;
 use App\Model\Category;
 use App\Model\Post;
 use Faker\Factory;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * This class generates fake post information based on post id for a single-post page.
@@ -21,6 +22,7 @@ use Faker\Factory;
  */
 class FakePostService implements PostServiceInterface
 {
+
     public function getPost(int $id): Post
     {
         $faker = Factory::create();
@@ -38,5 +40,11 @@ class FakePostService implements PostServiceInterface
             ;
 
         return $post;
+    }
+
+    public function findById(int $id): ?Post
+    {
+        // TODO: Implement findById() method.
+        return null;
     }
 }

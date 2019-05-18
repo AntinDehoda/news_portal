@@ -19,6 +19,7 @@
         "symfony/dotenv": "4.2.*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "4.2.*",
+        "symfony/orm-pack": "^1.0",
         "symfony/twig-bundle": "4.2.*",
         "symfony/yaml": "4.2.*"
     },
@@ -53,8 +54,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "cs-fix": "php-cs-fixer fix --allow-risky=yes --ansi"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

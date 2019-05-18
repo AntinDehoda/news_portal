@@ -11,6 +11,7 @@
 namespace App\Service\PostPage;
 
 use App\Model\Post;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Interface for retrieving post data by its identifier.
@@ -20,4 +21,6 @@ use App\Model\Post;
 interface PostServiceInterface
 {
     public function getPost(int $id): Post;
+
+    public function findById(int $id): ?Post;
 }

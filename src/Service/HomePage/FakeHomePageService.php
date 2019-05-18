@@ -25,6 +25,7 @@ use Faker\Factory;
 final class FakeHomePageService implements HomePageServiceInterface
 {
     private $faker;
+
     public function __construct()
     {
         $this->faker = Factory::create();
