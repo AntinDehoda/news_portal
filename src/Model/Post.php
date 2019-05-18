@@ -20,18 +20,18 @@ final class Post
     private $shortDescription;
     private $image;
     private $publicationDate;
-    private $fullText;
+    private $postBody;
 
-    public function getFullText(): string
+    public function getPostBody()
     {
-        return $this->fullText;
+        return $this->postBody;
     }
 
-    public function setFullText($fullText): void
+    public function setPostBody($postBody): void
     {
-        $this->fullText = $fullText;
+        $this->postBody = $postBody;
     }
-    
+
     public function __construct(int $id, Category $category, string $title)
     {
         $this->id = $id;
