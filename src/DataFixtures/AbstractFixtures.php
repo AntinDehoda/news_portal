@@ -9,7 +9,7 @@ use Faker\Factory;
 
 abstract class AbstractFixtures extends Fixture
 {
-    public $faker;
+    protected $faker;
 
     public function __construct()
     {
