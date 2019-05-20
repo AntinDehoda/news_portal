@@ -14,7 +14,7 @@ class PostMapper
     {
         $model =  new PostModel(
           $entity->getId(),
-          new Category('TODO Category title'),
+          new Category($entity->getCategory()->getTitle()),
             $entity->getTitle()
         );
         $model

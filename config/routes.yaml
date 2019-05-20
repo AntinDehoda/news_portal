@@ -6,3 +6,8 @@ post_index:
     controller: App\Controller\PostController::index
     requirements:
         id: '\d+'
+category_index:
+    path: /category/{id}
+    controller: App\Controller\CategoryController::index
+    requirements:
+        id: '\d+'

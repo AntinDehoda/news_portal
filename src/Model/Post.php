@@ -78,12 +78,12 @@ final class Post
         return $this;
     }
 
-    public function getPublicationDate(): \DateTime
+    public function getPublicationDate(): \DateTimeInterface
     {
         return $this->publicationDate;
     }
 
-    public function setPublicationDate(\DateTime $date): self
+    public function setPublicationDate(\DateTimeInterface $date): self
     {
         $this->publicationDate = $date;
 

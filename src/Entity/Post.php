@@ -46,6 +46,12 @@ class Post
      */
     private $postbody;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="post")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function __construct(string $title)
     {
         $this->setTitle($title);
@@ -115,19 +121,27 @@ class Post
 
         return $this;
     }
-    /**
-     * @return mixed
-     */
+
     public function getBody()
     {
         return $this->body;
     }
 
-    /**
-     * @param mixed $body
-     */
+
     public function setBody($body): void
     {
         $this->body = $body;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }

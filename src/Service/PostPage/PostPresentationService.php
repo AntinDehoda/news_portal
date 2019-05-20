@@ -16,11 +16,6 @@ class PostPresentationService implements PostServiceInterface
         $this->postRepository = $postRepository;
     }
 
-    public function getPost(int $id): Post
-    {
-        // TODO: Implement getPost() method.
-    }
-
     public function findById(int $id): ?Post
     {
         $entity = $this->postRepository->findById($id);

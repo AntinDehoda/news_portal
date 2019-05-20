@@ -19,7 +19,5 @@ use App\Model\Post;
  */
 interface PostServiceInterface
 {
-    public function getPost(int $id): Post;
-
     public function findById(int $id): ?Post;
 }

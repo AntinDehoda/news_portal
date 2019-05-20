@@ -12,7 +12,7 @@
                 <a href="#">
                     <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
                 </a>
-                <a href="#" class="category-link"><h2>{{ post.category.name }}</h2></a>
+                <a href="/category/{{ post.category.getId() }}" class="category-link"><h2>{{ post.category.name }}</h2></a>
                 <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
                 <p>{{ post.postBody }}</p>
                 <div class="clearfix"></div>
