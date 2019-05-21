@@ -7,7 +7,5 @@ post_index:
     requirements:
         id: '\d+'
 category_index:
-    path: /category/{id}
+    path: /category/{slug}
     controller: App\Controller\CategoryController::index
-    requirements:
-        id: '\d+'

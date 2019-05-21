@@ -1,5 +1,13 @@
 <?php
 
+/*
+ *
+ * (c) Anton Dehoda <dehoda@ukr.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -12,13 +20,13 @@ class CategoryFixtures extends Fixture
         'World',
         'Sport',
         'IT',
-        'Science'
+        'Science',
     ];
     public function load(ObjectManager $manager)
     {
-
         foreach (self::CATEGORIES as $key => $title) {
             $category = new Category($title);
+            $category->setTitle($title);
 
 
             $this->addReference('category_' . $key, $category);
@@ -32,7 +40,7 @@ class CategoryFixtures extends Fixture
 
             $manager->persist($category);
         }
-                $manager->flush();
+        $manager->flush();
     }
     public function getDependencies()
     {

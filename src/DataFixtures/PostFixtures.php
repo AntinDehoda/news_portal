@@ -1,8 +1,15 @@
 <?php
 
+/*
+ *
+ * (c) Anton Dehoda <dehoda@ukr.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\DataFixtures;
 
-use App\Entity\Category;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Post;
@@ -20,6 +27,7 @@ class PostFixtures extends AbstractFixtures implements DependentFixtureInterface
                 ->setCategory($this->getReference('category_' . \mt_rand(0, 3)))
                 ->setBody($this->faker->sentence(10, true))
             ;
+
             if ($this->faker->boolean(80)) {
                 $post->setPublicationDate(new \DateTime());
             }

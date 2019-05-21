@@ -22,7 +22,6 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @return Response
  *
- *
  * @author Anton Degoda <dehoda@ukr.net>
  */
 class PostController extends AbstractController
@@ -30,8 +29,9 @@ class PostController extends AbstractController
     public function index(PostServiceInterface $postService, int $id): Response
     {
         $post = $postService->findById($id);
+
         if (null == $post) {
-            throw $this->createNotFoundException('There is no post with id='.$id);
+            throw $this->createNotFoundException('There is no post with id=' . $id);
         }
 
         return $this->render('post/index.html.twig', [

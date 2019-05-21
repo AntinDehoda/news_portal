@@ -21,7 +21,6 @@ use Faker\Factory;
  */
 class FakePostService implements PostServiceInterface
 {
-
     public function getPost(int $id): Post
     {
         $faker = Factory::create();

@@ -1,5 +1,13 @@
 <?php
 
+/*
+ *
+ * (c) Anton Dehoda <dehoda@ukr.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,20 +16,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Person domain object class
  *
- * @Gedmo\Mapping\Annotation\Slug(handlers={
- *      @Gedmo\Mapping\Annotation\SlugHandler(class="Gedmo\Sluggable\Handler\RelativeSlugHandler", options={
- *          @Gedmo\Mapping\Annotation\SlugHandlerOption(name="relationField", value="title"),
- *          @Gedmo\Mapping\Annotation\SlugHandlerOption(name="relationSlugField", value="slug"),
- *          @Gedmo\Mapping\Annotation\SlugHandlerOption(name="separator", value="/")
- *      })
- * })
- * @Doctrine\ORM\Mapping\Column(length=64, unique=true)
- */
-
-/**
- * @ORM\Entity(repositoryClass="App\Repository\Category\CategoryRepository")
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="\Repository\Category\CategoryRepository")
+ *
  */
 class Category
 {
@@ -32,16 +30,16 @@ class Category
      */
     private $id;
 
-    /**
-     * @Gedmo\Mapping\Annotation\Slug
-     * @Doctrine\ORM\Mapping\Column(length=64, unique=true)
-     */
-    private $slug;
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     private $title;
-
+    /**
+     * @Gedmo\Slug(fields={"title"}, unique=false)
+     * @ORM\Column(length=100, unique=false)
+     */
+    protected $slug;
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="category")
      */
