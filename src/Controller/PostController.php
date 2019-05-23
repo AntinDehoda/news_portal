@@ -10,6 +10,7 @@
 
 namespace App\Controller;
 
+use App\Model\Category;
 use App\Service\PostPage\PostServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +37,16 @@ class PostController extends AbstractController
 
         return $this->render('post/index.html.twig', [
             'post' => $post,
+        ]);
+    }
+    public function postsFromCategory(PostServiceInterface $postService, Category $category)
+    {
+        $posts = $postService->getPostsByCategory($category);
+
+
+        return $this->render('category/index.html.twig', [
+            'posts' => $posts,
+            'category' => $category,
         ]);
     }
 }

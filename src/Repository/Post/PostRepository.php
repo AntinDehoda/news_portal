@@ -14,6 +14,7 @@ use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Model\Category;
 
 /**
  * @method null|Post find($id, $lockMode = null, $lockVersion = null)
@@ -41,6 +42,21 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
                 ->getOneOrNullResult()
                 ;
         } catch (NonUniqueResultException $e) {
+            return null;
+        }
+    }
+    public function getPostsByCategory(Category $category): ?array
+    {
+        try {
+            $entity = $this->createQueryBuilder('p')
+                ->where('p.category = :id')
+                ->setParameter('id', $category->getId())
+                ->andWhere('p.publicationDate IS NOT NULL')
+                ->getQuery()
+                ->getResult();
+
+            return $entity;
+        } catch (EntityNotFoundException $e) {
             return null;
         }
     }

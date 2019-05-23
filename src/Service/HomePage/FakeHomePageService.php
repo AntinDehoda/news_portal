@@ -62,7 +62,7 @@ final class FakeHomePageService implements HomePageServiceInterface
     {
         $post = new Post(
             $this->faker->randomNumber(),
-            new Category($this->faker->sentence),
+            new Category($this->faker->randomNumber(), $this->faker->sentence, $this->faker->sentence),
             $this->faker->sentence
             );
         $post

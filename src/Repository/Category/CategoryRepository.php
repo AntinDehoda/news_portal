@@ -12,9 +12,8 @@ namespace App\Repository\Category;
 
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityNotFoundException;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use App\Entity\Post;
 
 /**
  * @method null|Category find($id, $lockMode = null, $lockVersion = null)
@@ -26,22 +25,21 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Post::class);
+        parent::__construct($registry, Category::class);
     }
 
-    public function getPosts(int $id): ?array
+
+    public function getCategory(string $slug): ?Category
     {
         try {
-            $entity = $this->createQueryBuilder('p')
-                ->where('p.category = :id')
-                ->setParameter('id', $id)
-                ->andWhere('p.publicationDate IS NOT NULL')
-                ->addSelect('p')
+            $entity = $this->createQueryBuilder('c')
+                ->where('c.slug = :slug')
+                ->setParameter('slug', $slug)
                 ->getQuery()
-                ->getResult();
+                ->getOneOrNullResult();
 
             return $entity;
-        } catch (EntityNotFoundException $e) {
+        } catch (NonUniqueResultException $e) {
             return null;
         }
     }

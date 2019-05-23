@@ -10,12 +10,9 @@
 
 namespace App\Service\CategoryPage;
 
-use App\Collection\PostCollection;
 use App\Model\Category;
 
 interface CategoryServiceInterface
 {
-    public function getPosts(int $id): ?PostCollection;
-
-    public function getCategory(string $slug): ?Category;
+    public function getCategoryBySlug(string $slug): ?Category;
 }

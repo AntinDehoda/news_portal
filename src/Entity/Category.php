@@ -37,7 +37,7 @@ class Category
     private $title;
     /**
      * @Gedmo\Slug(fields={"title"}, unique=false)
-     * @ORM\Column(length=100, unique=false)
+     * @ORM\Column(length=100, updateble=false)
      */
     protected $slug;
     /**

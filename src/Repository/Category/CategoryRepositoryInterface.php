@@ -10,11 +10,9 @@
 
 namespace App\Repository\Category;
 
-use App\Model\Category;
+use App\Entity\Category;
 
 interface CategoryRepositoryInterface
 {
-    public function getPosts(int $id): ?array ;
-
     public function getCategory(string $slug): ?Category;
 }

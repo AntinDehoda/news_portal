@@ -18,16 +18,16 @@ class CategoryController extends AbstractController
 {
     public function index(CategoryServiceInterface $categoryService, string $slug): Response
     {
-        $category;
-        $posts = $categoryService->getPosts($id);
+        $category = $categoryService->getCategoryBySlug($slug);
 
 
-        if (null == $posts) {
-            throw $this->createNotFoundException('There is no post in category with id=' . $id);
+
+        if (null == $category) {
+            throw $this->createNotFoundException('There is no post in category with slug=' . $slug);
         }
 
-        return $this->render('category/index.html.twig', [
-            'posts' => $posts,
+        return $this->forward('App\Controller\PostController::postsFromCategory', [
+            'category'  => $category,
         ]);
     }
 }

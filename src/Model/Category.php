@@ -18,9 +18,11 @@ final class Category
     private $name;
     private $id;
 
-    public function __construct(string $name)
+    public function __construct(int $id, string $name, string $slug)
     {
         $this->name = $name;
+        $this->id = $id;
+        $this->slug = $slug;
     }
 
     public function getName(): string

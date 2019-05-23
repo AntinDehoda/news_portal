@@ -10,6 +10,8 @@
 
 namespace App\Service\PostPage;
 
+use App\Collection\PostCollection;
+use App\Model\Category;
 use App\Model\Post;
 
 /**
@@ -20,4 +22,6 @@ use App\Model\Post;
 interface PostServiceInterface
 {
     public function findById(int $id): ?Post;
+
+    public function getPostsByCategory(Category $category): ?PostCollection;
 }

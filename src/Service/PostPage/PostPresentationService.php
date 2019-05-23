@@ -10,6 +10,8 @@
 
 namespace App\Service\PostPage;
 
+use App\Collection\PostCollection;
+use App\Model\Category;
 use App\Model\Post;
 use App\PostMapper\PostMapper;
 use App\Repository\Post\PostRepositoryInterface;
@@ -33,5 +35,17 @@ class PostPresentationService implements PostServiceInterface
         $model = PostMapper::entityToModel($entity);
 
         return $model;
+    }
+
+    public function getPostsByCategory(Category $category): ?PostCollection
+    {
+        $entities = $this->postRepository->getPostsByCategory($category);
+        $posts = new PostCollection();
+
+        foreach ($entities as $entity) {
+            $posts->addPost(PostMapper::entityToModel($entity));
+        }
+
+        return $posts;
     }
 }

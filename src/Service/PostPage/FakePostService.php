@@ -10,6 +10,7 @@
 
 namespace App\Service\PostPage;
 
+use App\Collection\PostCollection;
 use App\Model\Category;
 use App\Model\Post;
 use Faker\Factory;
@@ -45,5 +46,10 @@ class FakePostService implements PostServiceInterface
     {
         // TODO: Implement findById() method.
         return null;
+    }
+
+    public function getPostsByCategory(Category $category): ?PostCollection
+    {
+        // TODO: Implement getPostsByCategory() method.
     }
 }

@@ -10,9 +10,8 @@
 
 namespace App\Service\CategoryPage;
 
-use App\Collection\PostCollection;
+use App\CategoryMapper\CategoryMapper;
 use App\Model\Category;
-use App\PostMapper\PostMapper;
 use App\Repository\Category\CategoryRepositoryInterface;
 
 class CategoryService implements CategoryServiceInterface
@@ -24,24 +23,12 @@ class CategoryService implements CategoryServiceInterface
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function getPosts(int $id): ?PostCollection
-    {
-        $entities = $this->categoryRepository->getPosts($id);
-
-        if (null == $entities) {
-            return null;
-        }
-        $posts = new PostCollection();
-
-        foreach ($entities as $entity) {
-            $posts->addPost(PostMapper::entityToModel($entity));
-        }
-
-        return $posts;
-    }
-
-    public function getCategory(string $slug): ?Category
+    public function getCategoryBySlug(string $slug): ?Category
     {
         $entity = $this->categoryRepository->getCategory($slug);
+
+        $model = CategoryMapper::entityToModel($entity);
+
+        return $model;
     }
 }
