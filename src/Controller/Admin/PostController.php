@@ -10,9 +10,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Model\Post;
+use App\Form\PostEditType;
 use App\Form\PostCreateType;
-use App\Service\PostPage\Managment\PostManagementServiceInterface;
+use App\Service\PostPage\Management\PostManagementServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -36,18 +36,19 @@ final class PostController extends AbstractController
         ]);
     }
 
-    public function edit(Post $post, Request $request, PostManagementServiceInterface $postManagement)
+    public function edit(Request $request, PostManagementServiceInterface $postManagement, int $id)
     {
-        $form = $this->createForm(PostCreateType::class, $post);
+        $dto = $postManagement->createPostDtoById($id);
+        $form = $this->createForm(PostEditType::class, $dto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $postManagement->create($form->getData());
+            $postManagement->update($form->getData(), $id);
 
             $this->addFlash('success', 'Post was successfully updated!');
 
             return $this->redirectToRoute('admin_post_edit', [
-                'id' => $post->getId(),
+                'id' => $id,
             ]);
         }
 

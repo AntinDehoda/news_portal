@@ -22,16 +22,29 @@ final class Post
     private $publicationDate;
     private $postBody;
 
-    public function getPostBody()
+    public function getPostBody(): ?string
     {
         return $this->postBody;
     }
 
-    public function setPostBody($postBody): void
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+    public function setPostBody(string $postBody): self
     {
         $this->postBody = $postBody;
-    }
 
+        return $this;
+    }
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
     public function __construct(int $id, Category $category, string $title)
     {
         $this->id = $id;

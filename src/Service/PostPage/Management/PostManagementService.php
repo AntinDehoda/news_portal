@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Service\PostPage\Managment;
+namespace App\Service\PostPage\Management;
 
 use App\Form\Dto\PostCreateDto;
 use App\PostMapper\PostMapper;
@@ -22,10 +22,24 @@ class PostManagementService implements PostManagementServiceInterface
         $this->postRepository = $postRepository;
     }
 
-    public function create(PostCreateDto $dto)
+    public function create(PostCreateDto $dto): void
     {
         $post = PostMapper::dtoToEntity($dto);
         $post->publish();
         $this->postRepository->save($post);
+    }
+    public function update(PostCreateDto $dto, int $id): void
+    {
+        $post = $this->postRepository->findById($id);
+        $post = PostMapper::updateEntity($dto, $post);
+        $post->publish();
+        $this->postRepository->update();
+    }
+    public function createPostDtoById(int $id): PostCreateDto
+    {
+        $post = $this->postRepository->findById($id);
+        $dto = PostMapper::entityToDto($post);
+
+        return $dto;
     }
 }

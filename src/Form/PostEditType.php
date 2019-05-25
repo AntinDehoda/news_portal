@@ -10,8 +10,8 @@
 
 namespace App\Form;
 
-use App\Form\Dto\PostCreateDto;
 use App\Entity\Category;
+use App\Form\Dto\PostCreateDto;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -19,7 +19,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class PostCreateType extends AbstractType
+final class PostEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -29,6 +29,7 @@ final class PostCreateType extends AbstractType
            ->add('category', EntityType::class, [
                'class' => Category::class,
                'choice_label' => 'title',
+               'choice_value' => 'id',
            ])
            ->add('postBody', TextType::class)
            ->add('image', TextType::class)

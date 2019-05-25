@@ -18,4 +18,5 @@ interface PostRepositoryInterface
     public function findById(int $id): ?Post;
     public function getPostsByCategory(Category $category): ?array;
     public function save(Post $post): void;
+    public function update(): void;
 }

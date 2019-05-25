@@ -20,8 +20,6 @@ class CategoryController extends AbstractController
     {
         $category = $categoryService->getCategoryBySlug($slug);
 
-
-
         if (null == $category) {
             throw $this->createNotFoundException('There is no post in category with slug=' . $slug);
         }

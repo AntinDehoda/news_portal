@@ -12,7 +12,14 @@
     {% include '_header.html.twig' %}
 
     <main>
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ parse_url(message) }}
+                </div>
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </div>
     </main>
 
     <footer>

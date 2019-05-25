@@ -13,7 +13,7 @@ namespace App\Form\Dto;
 final class PostCreateDto
 {
     public $title;
-    public $postbody;
+    public $postBody;
     public $shortDescription;
     public $image;
     public $category;

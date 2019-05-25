@@ -13,6 +13,7 @@ namespace App\Repository\Post;
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\Model\Category;
 
@@ -35,7 +36,7 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
             return $this->createQueryBuilder('p')
                 ->where('p.id = :id')
                 ->setParameter('id', $id)
-                ->andWhere('p.publicationDate IS NOT NULL')
+//                ->andWhere('p.publicationDate IS NOT NULL')
                 ->innerJoin('p.category', 'c')
                 ->addSelect('c')
                 ->getQuery()
@@ -64,6 +65,11 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
     {
         $em = $this->getEntityManager();
         $em->persist($post);
+        $em->flush();
+    }
+    public function update(): void
+    {
+        $em = $this->getEntityManager();
         $em->flush();
     }
 }

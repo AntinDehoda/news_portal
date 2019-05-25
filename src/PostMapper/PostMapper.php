@@ -40,11 +40,34 @@ class PostMapper
     {
         $entity = new Post($dto->title);
         $entity
-            ->setPostbody($dto->postbody)
+            ->setPostbody($dto->postBody)
             ->setShortDescription($dto->shortDescription)
             ->setCategory($dto->category)
             ->setImage($dto->image);
 
         return $entity;
+    }
+    public static function updateEntity(PostCreateDto $dto, Post $entity): Post
+    {
+        $entity
+            ->setTitle($dto->title)
+            ->setPostBody($dto->postBody)
+            ->setShortDescription($dto->shortDescription)
+            ->setCategory($dto->category)
+            ->setImage($dto->image);
+
+        return $entity;
+    }
+    public static function entityToDto(Post $post): PostCreateDto
+    {
+        $dto = new PostCreateDto();
+        $dto->title = $post->getTitle();
+        $dto->category = $post->getCategory();
+        $dto->image = $post->getImage();
+        $dto->shortDescription = $post->getShortDescription();
+        $dto->postBody = $post->getPostBody();
+        $dto->publicationDate = null == $post->getPublicationDate() ? false : true;
+
+        return $dto;
     }
 }
