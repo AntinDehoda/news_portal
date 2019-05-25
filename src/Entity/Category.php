@@ -18,7 +18,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  *
  * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="\Repository\Category\CategoryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Category\CategoryRepository")
  *
  */
 class Category
@@ -36,8 +36,8 @@ class Category
      */
     private $title;
     /**
-     * @Gedmo\Slug(fields={"title"}, unique=false)
-     * @ORM\Column(length=100, updateble=false)
+     * @Gedmo\Slug(fields={"title"}, updatable=false)
+     * @ORM\Column(length=100, unique=false)
      */
     protected $slug;
     /**

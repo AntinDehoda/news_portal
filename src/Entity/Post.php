@@ -111,11 +111,9 @@ class Post
         return $this->publicationDate;
     }
 
-    public function setPublicationDate(\DateTimeInterface $publicationDate): self
+    public function publish()
     {
-        $this->publicationDate = $publicationDate;
-
-        return $this;
+        $this->publicationDate = new \DateTime();
     }
 
     public function getPostbody(): ?string

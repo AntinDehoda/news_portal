@@ -9,3 +9,11 @@ post_index:
 category_index:
     path: /category/{slug}
     controller: App\Controller\CategoryController::index
+admin_post_create:
+    path: /admin/post/create
+    controller: App\Controller\Admin\PostController::create
+admin_post_edit:
+    path: /admin/post/{id}/edit
+    controller: App\Controller\Admin\PostController::edit
+    requirements:
+        id: '\d+'

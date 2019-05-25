@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/category.css') }}">
 {% endblock %}
 
 {% block body %}
             <section class="regular-posts">
         {% for post in posts %}
             <article class="post">
-                <a href="#" class="category-link">{{ post.category.name }}</a>
+                <a href="#" class="category-link">{{ post.category.name }} - {{ get_param('app.pagination_page_limit') }}</a>
                 <a href="/post/{{ post.id }}"><h4>{{ post.title }}</h4></a>
                 <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
             </article>
         {% endfor %}
         </section>
-    </div>
 {% endblock %}

@@ -29,7 +29,7 @@ class PostFixtures extends AbstractFixtures implements DependentFixtureInterface
             ;
 
             if ($this->faker->boolean(80)) {
-                $post->setPublicationDate(new \DateTime());
+                $post->publish(new \DateTime());
             }
             $this->addReference('post' . $i, $post);
             $manager->persist($post);

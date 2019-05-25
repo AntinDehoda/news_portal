@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(postEditForm) }}
+    {{ form_widget(postEditForm) }}
+    <input type="submit" value="Create" class="btn btn-success">
+    {{ form_end(postEditForm) }}
+{% endblock %}

@@ -11,6 +11,7 @@
 namespace App\PostMapper;
 
 use App\Entity\Post;
+use App\Form\Dto\PostCreateDto;
 use App\Model\Category;
 use App\Model\Post as PostModel;
 
@@ -34,5 +35,16 @@ class PostMapper
             ->setPostBody($entity->getPostbody());
 
         return $model;
+    }
+    public static function dtoToEntity(PostCreateDto $dto): Post
+    {
+        $entity = new Post($dto->title);
+        $entity
+            ->setPostbody($dto->postbody)
+            ->setShortDescription($dto->shortDescription)
+            ->setCategory($dto->category)
+            ->setImage($dto->image);
+
+        return $entity;
     }
 }
