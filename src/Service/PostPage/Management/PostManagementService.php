@@ -11,7 +11,7 @@
 namespace App\Service\PostPage\Management;
 
 use App\Form\Dto\PostCreateDto;
-use App\PostMapper\PostMapper;
+use App\Mappers\PostMapper;
 use App\Repository\Post\PostRepositoryInterface;
 
 class PostManagementService implements PostManagementServiceInterface

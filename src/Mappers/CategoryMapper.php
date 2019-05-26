@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\CategoryMapper;
+namespace App\Mappers;
 
 use App\Entity\Category;
 use App\Model\Category as CategoryModel;

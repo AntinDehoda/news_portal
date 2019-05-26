@@ -13,7 +13,7 @@ namespace App\Service\PostPage;
 use App\Collection\PostCollection;
 use App\Model\Category;
 use App\Model\Post;
-use App\PostMapper\PostMapper;
+use App\Mappers\PostMapper;
 use App\Repository\Post\PostRepositoryInterface;
 
 class PostPresentationService implements PostServiceInterface

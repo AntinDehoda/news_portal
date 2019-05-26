@@ -10,11 +10,26 @@
 
 namespace App\Form\Dto;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 final class PostCreateDto
 {
+    /**
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     */
     public $title;
+    /**
+     * @Assert\NotNull
+     */
     public $postBody;
+    /**
+     * @Assert\NotNull
+     */
     public $shortDescription;
+    /**
+     * @Assert\Url
+     */
     public $image;
     public $category;
     public $publicationDate;

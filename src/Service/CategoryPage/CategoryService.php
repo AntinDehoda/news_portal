@@ -10,7 +10,7 @@
 
 namespace App\Service\CategoryPage;
 
-use App\CategoryMapper\CategoryMapper;
+use App\Mappers\CategoryMapper;
 use App\Model\Category;
 use App\Repository\Category\CategoryRepositoryInterface;
 

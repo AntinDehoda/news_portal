@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\PostMapper;
+namespace App\Mappers;
 
 use App\Entity\Post;
 use App\Form\Dto\PostCreateDto;
@@ -51,7 +51,7 @@ class PostMapper
     {
         $entity
             ->setTitle($dto->title)
-            ->setPostBody($dto->postBody)
+            ->setPostbody($dto->postBody)
             ->setShortDescription($dto->shortDescription)
             ->setCategory($dto->category)
             ->setImage($dto->image);
@@ -65,7 +65,7 @@ class PostMapper
         $dto->category = $post->getCategory();
         $dto->image = $post->getImage();
         $dto->shortDescription = $post->getShortDescription();
-        $dto->postBody = $post->getPostBody();
+        $dto->postBody = $post->getPostbody();
         $dto->publicationDate = null == $post->getPublicationDate() ? false : true;
 
         return $dto;

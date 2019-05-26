@@ -72,7 +72,7 @@ final class Post
         return $this->shortDescription;
     }
 
-    public function setShortDescription(string $description): self
+    public function setShortDescription(?string $description): self
     {
         $this->shortDescription = $description;
 
@@ -84,7 +84,7 @@ final class Post
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

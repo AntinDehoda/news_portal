@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\Post\PostRepository")
  */
-class Post
+final class Post
 {
     /**
      * @ORM\Id()
@@ -30,7 +30,7 @@ class Post
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $shortDescription;
 
@@ -38,11 +38,6 @@ class Post
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $body;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -87,7 +82,7 @@ class Post
         return $this->shortDescription;
     }
 
-    public function setShortDescription(string $shortDescription): self
+    public function setShortDescription(?string $shortDescription): self
     {
         $this->shortDescription = $shortDescription;
 
@@ -99,7 +94,7 @@ class Post
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
@@ -126,17 +121,6 @@ class Post
         $this->postbody = $postbody;
 
         return $this;
-    }
-
-    public function getBody()
-    {
-        return $this->body;
-    }
-
-
-    public function setBody($body): void
-    {
-        $this->body = $body;
     }
 
     public function getCategory(): ?Category
