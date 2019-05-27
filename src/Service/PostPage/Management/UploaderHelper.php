@@ -10,6 +10,7 @@
 
 namespace App\Service\PostPage\Management;
 
+use App\Form\Dto\PostCreateDto;
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -22,16 +23,17 @@ final class UploaderHelper
         $this->uploadsPath = $uploadsPath;
     }
 
-    public function uploadImage(UploadedFile $uploadedFile): string
+    public function setPostImage(UploadedFile $uploadedFile, PostCreateDto $dto): PostCreateDto
     {
         $destination = $this->uploadsPath . '/post_img';
         $originalFilename = \pathinfo($uploadedFile->getClientOriginalName(), \PATHINFO_FILENAME);
-        $newFilename = Urlizer::urlize($originalFilename) . '-' . \uniqid() . '.' . $uploadedFile->guessExtension();
+        $newFileName = Urlizer::urlize($originalFilename) . '-' . \uniqid() . '.' . $uploadedFile->guessExtension();
         $uploadedFile->move(
-                $destination,
-                $newFilename
+            $destination,
+            $newFileName
             );
+        $dto->image = $newFileName;
 
-        return $newFilename;
+        return $dto;
     }
 }

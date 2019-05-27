@@ -20,15 +20,22 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class PostController extends AbstractController
 {
-    public function create(Request $request, PostManagementServiceInterface $postManagement)
+    public function create(Request $request, PostManagementServiceInterface $postManagement, UploaderHelper $uploaderHelper)
     {
         $form = $this->createForm(PostCreateType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $postManagement->create($form->getData());
+            $dto = $form->getData();
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
 
-            $this->addFlash('success', 'Post was succesfully created!');
+            if ($uploadedFile) {
+                $dto = $uploaderHelper->setPostImage($uploadedFile, $dto);
+            }
+            $postManagement->create($dto);
+
+            $this->addFlash('success', 'Post was successfully created!');
 
             return $this->redirectToRoute('admin_post_create');
         }
@@ -45,15 +52,13 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $dto = $form->getData();
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
-            $dto = $form->getData();
 
             if ($uploadedFile) {
-                $newfileName = $uploaderHelper->uploadImage($uploadedFile);
-                $dto->image = $newfileName;
+                $dto = $uploaderHelper->setPostImage($uploadedFile, $dto);
             }
-
             $postManagement->update($dto, $id);
 
             $this->addFlash('success', 'Post was successfully updated!');

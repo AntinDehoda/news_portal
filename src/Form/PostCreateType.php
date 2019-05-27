@@ -13,6 +13,7 @@ namespace App\Form;
 use App\Form\Dto\PostCreateDto;
 use App\Entity\Category;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -31,7 +32,9 @@ final class PostCreateType extends AbstractType
                'choice_label' => 'title',
            ])
            ->add('postBody', TextType::class)
-           ->add('image', TextType::class)
+            ->add('imageFile', FileType::class, [
+                'mapped' => false,
+            ])
            ->add('publicationDate', CheckboxType::class)
            ;
     }
