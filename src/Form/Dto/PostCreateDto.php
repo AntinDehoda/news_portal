@@ -27,9 +27,6 @@ final class PostCreateDto
      * @Assert\NotNull
      */
     public $shortDescription;
-    /**
-     * @Assert\Url
-     */
     public $image;
     public $category;
     public $publicationDate;

@@ -12,9 +12,11 @@ namespace App\Controller\Admin;
 
 use App\Form\PostEditType;
 use App\Form\PostCreateType;
+use App\Service\PostPage\Management\UploaderHelper;
 use App\Service\PostPage\Management\PostManagementServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class PostController extends AbstractController
 {
@@ -36,14 +38,23 @@ final class PostController extends AbstractController
         ]);
     }
 
-    public function edit(Request $request, PostManagementServiceInterface $postManagement, int $id)
+    public function edit(Request $request, PostManagementServiceInterface $postManagement, int $id, UploaderHelper $uploaderHelper)
     {
         $dto = $postManagement->createPostDtoById($id);
         $form = $this->createForm(PostEditType::class, $dto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $postManagement->update($form->getData(), $id);
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+            $dto = $form->getData();
+
+            if ($uploadedFile) {
+                $newfileName = $uploaderHelper->uploadImage($uploadedFile);
+                $dto->image = $newfileName;
+            }
+
+            $postManagement->update($dto, $id);
 
             $this->addFlash('success', 'Post was successfully updated!');
 
