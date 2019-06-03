@@ -16,24 +16,16 @@ use App\Service\PostPage\Management\UploaderHelper;
 use App\Service\PostPage\Management\PostManagementServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class PostController extends AbstractController
 {
-    public function create(Request $request, PostManagementServiceInterface $postManagement, UploaderHelper $uploaderHelper)
+    public function create(Request $request, PostManagementServiceInterface $postManagement)
     {
         $form = $this->createForm(PostCreateType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $dto = $form->getData();
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-
-            if ($uploadedFile) {
-                $dto = $uploaderHelper->setPostImage($uploadedFile, $dto);
-            }
-            $postManagement->create($dto);
+            $postManagement->create($form->getData(), $form['imageFile']->getData());
 
             $this->addFlash('success', 'Post was successfully created!');
 
@@ -52,14 +44,7 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $dto = $form->getData();
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-
-            if ($uploadedFile) {
-                $dto = $uploaderHelper->setPostImage($uploadedFile, $dto);
-            }
-            $postManagement->update($dto, $id);
+            $postManagement->update($form->getData(), $form['imageFile']->getData(), $id);
 
             $this->addFlash('success', 'Post was successfully updated!');
 
