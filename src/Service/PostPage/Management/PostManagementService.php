@@ -35,7 +35,7 @@ class PostManagementService implements PostManagementServiceInterface
         $post->publish();
         $this->postRepository->update();
     }
-    public function createPostDtoById(int $id): PostCreateDto
+    public function getPost(int $id): PostCreateDto
     {
         $post = $this->postRepository->findById($id);
         $dto = PostMapper::entityToDto($post);

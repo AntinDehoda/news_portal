@@ -16,5 +16,5 @@ interface PostManagementServiceInterface
 {
     public function create(PostCreateDto $dto): void;
     public function update(PostCreateDto $dto, int $id): void;
-    public function createPostDtoById(int $id): PostCreateDto;
+    public function getPost(int $id): PostCreateDto;
 }

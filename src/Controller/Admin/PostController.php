@@ -47,7 +47,7 @@ final class PostController extends AbstractController
 
     public function edit(Request $request, PostManagementServiceInterface $postManagement, int $id, UploaderHelper $uploaderHelper)
     {
-        $dto = $postManagement->createPostDtoById($id);
+        $dto = $postManagement->getPost($id);
         $form = $this->createForm(PostEditType::class, $dto);
         $form->handleRequest($request);
 
