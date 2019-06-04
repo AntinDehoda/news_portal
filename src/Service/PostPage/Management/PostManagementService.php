@@ -34,7 +34,7 @@ class PostManagementService implements PostManagementServiceInterface
         $uploadedFile = $dto->imageFile;
 
         if ($uploadedFile) {
-            $dto->image = $this->uploaderHelper->upload($uploadedFile);
+            $dto->image = $this->uploaderHelper->uploadPostImage($uploadedFile);
         }
         $post = PostMapper::dtoToEntity($dto);
         $post->publish();
@@ -46,7 +46,7 @@ class PostManagementService implements PostManagementServiceInterface
         $uploadedFile = $dto->imageFile;
 
         if ($uploadedFile) {
-            $dto->image = $this->uploaderHelper->upload($uploadedFile);
+            $dto->image = $this->uploaderHelper->uploadPostImage($uploadedFile);
         }
         $post = $this->postRepository->findById($id);
         $post = PostMapper::updateEntity($dto, $post);
