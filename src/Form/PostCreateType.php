@@ -32,9 +32,7 @@ final class PostCreateType extends AbstractType
                'choice_label' => 'title',
            ])
            ->add('postBody', TextType::class)
-            ->add('imageFile', FileType::class, [
-                'mapped' => false,
-            ])
+            ->add('imageFile', FileType::class)
            ->add('publicationDate', CheckboxType::class)
            ;
     }

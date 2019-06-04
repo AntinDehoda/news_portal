@@ -14,6 +14,7 @@ use App\Form\Dto\PostCreateDto;
 use App\Mappers\PostMapper;
 use App\Repository\Post\PostRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\Service\FileUploader;
 
 class PostManagementService implements PostManagementServiceInterface
 {
@@ -21,25 +22,31 @@ class PostManagementService implements PostManagementServiceInterface
     private $uploaderHelper;
 
 
-    public function __construct(PostRepositoryInterface $postRepository, UploaderHelper $uploaderHelper)
+    public function __construct(PostRepositoryInterface $postRepository, FileUploader $uploaderHelper)
     {
         $this->postRepository = $postRepository;
         $this->uploaderHelper = $uploaderHelper;
     }
 
-    public function create(PostCreateDto $dto, UploadedFile $uploadedFile): void
+    public function create(PostCreateDto $dto): void
     {
+        /** @var UploadedFile $uploadedFile */
+        $uploadedFile = $dto->imageFile;
+
         if ($uploadedFile) {
-            $dto->image = $this->uploaderHelper->setPostImage($uploadedFile);
+            $dto->image = $this->uploaderHelper->upload($uploadedFile);
         }
         $post = PostMapper::dtoToEntity($dto);
         $post->publish();
         $this->postRepository->save($post);
     }
-    public function update(PostCreateDto $dto, UploadedFile $uploadedFile, int $id): void
+    public function update(PostCreateDto $dto, int $id): void
     {
+        /** @var UploadedFile $uploadedFile */
+        $uploadedFile = $dto->imageFile;
+
         if ($uploadedFile) {
-            $dto->image = $this->uploaderHelper->setPostImage($uploadedFile);
+            $dto->image = $this->uploaderHelper->upload($uploadedFile);
         }
         $post = $this->postRepository->findById($id);
         $post = PostMapper::updateEntity($dto, $post);

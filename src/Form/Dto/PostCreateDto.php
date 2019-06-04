@@ -11,6 +11,7 @@
 namespace App\Form\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class PostCreateDto
 {
@@ -30,4 +31,6 @@ final class PostCreateDto
     public $image;
     public $category;
     public $publicationDate;
+    /** @var UploadedFile $imageFile */
+    public $imageFile;
 }

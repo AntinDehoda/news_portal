@@ -33,9 +33,7 @@ final class PostEditType extends AbstractType
                'choice_value' => 'id',
            ])
            ->add('postBody', TextType::class)
-           ->add('imageFile', FileType::class, [
-               'mapped' => false,
-           ])
+           ->add('imageFile', FileType::class)
            ->add('publicationDate', CheckboxType::class)
            ;
     }

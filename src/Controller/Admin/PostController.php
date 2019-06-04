@@ -12,7 +12,6 @@ namespace App\Controller\Admin;
 
 use App\Form\PostEditType;
 use App\Form\PostCreateType;
-use App\Service\PostPage\Management\UploaderHelper;
 use App\Service\PostPage\Management\PostManagementServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +24,7 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $postManagement->create($form->getData(), $form['imageFile']->getData());
+            $postManagement->create($form->getData());
 
             $this->addFlash('success', 'Post was successfully created!');
 
@@ -37,14 +36,14 @@ final class PostController extends AbstractController
         ]);
     }
 
-    public function edit(Request $request, PostManagementServiceInterface $postManagement, int $id, UploaderHelper $uploaderHelper)
+    public function edit(Request $request, PostManagementServiceInterface $postManagement, int $id)
     {
         $dto = $postManagement->getPost($id);
         $form = $this->createForm(PostEditType::class, $dto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $postManagement->update($form->getData(), $form['imageFile']->getData(), $id);
+            $postManagement->update($form->getData(), $id);
 
             $this->addFlash('success', 'Post was successfully updated!');
 

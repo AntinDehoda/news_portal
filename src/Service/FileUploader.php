@@ -8,24 +8,26 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Service\PostPage\Management;
+namespace App\Service;
 
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-final class UploaderHelper
+final class FileUploader
 {
     private $uploadsPath;
-    const POST_IMAGE_UPLOADS = '/post_img';
+    private $params;
 
-    public function __construct(string $uploadsPath)
+    public function __construct(string $uploadsPath, ParameterBagInterface $params)
     {
         $this->uploadsPath = $uploadsPath;
+        $this->params = $params;
     }
 
-    public function setPostImage(UploadedFile $uploadedFile): string
+    public function upload(UploadedFile $uploadedFile): string
     {
-        $destination = $this->uploadsPath . self::POST_IMAGE_UPLOADS;
+        $destination = $this->uploadsPath . $this->params->get('app.post_image_uploads');
         $originalFilename = \pathinfo($uploadedFile->getClientOriginalName(), \PATHINFO_FILENAME);
         $newFileName = Urlizer::urlize($originalFilename) . '-' . \uniqid() . '.' . $uploadedFile->guessExtension();
         $uploadedFile->move(

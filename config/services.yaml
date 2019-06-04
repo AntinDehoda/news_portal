@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.pagination_page_limit: 20
+    app.post_image_uploads : '/post_img'
 
 services:
     # default configuration for services in *this* file
@@ -24,7 +25,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
     # set up spesial, global autowiring rules
-    App\Service\PostPage\Management\UploaderHelper:
+    App\Service\FileUploader:
         $uploadsPath: '%kernel.project_dir%/public/uploads'
 
     # add more service definitions when explicit configuration is needed
