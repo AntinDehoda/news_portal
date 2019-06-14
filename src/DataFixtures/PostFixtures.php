@@ -25,11 +25,11 @@ class PostFixtures extends AbstractFixtures implements DependentFixtureInterface
                 ->setImage($this->faker->ImageURL())
                 ->setPostbody($this->faker->sentence(10, true))
                 ->setCategory($this->getReference('category_' . \mt_rand(0, 3)))
-                ->setBody($this->faker->sentence(10, true))
+                ->setPostbody($this->faker->sentence(10, true))
             ;
 
             if ($this->faker->boolean(80)) {
-                $post->publish(new \DateTime());
+                $post->publish();
             }
             $this->addReference('post' . $i, $post);
             $manager->persist($post);
