@@ -11,6 +11,7 @@ HEADER;
 $finder = \PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude('docs')
+    ->exclude('var')
 ;
 
 return \PhpCsFixer\Config::create()
