@@ -26,6 +26,10 @@ class CategoryService implements CategoryServiceInterface
     public function getCategoryBySlug(string $slug): ?Category
     {
         $entity = $this->categoryRepository->getCategory($slug);
+
+        if (null == $entity) {
+            return null;
+        }
         $model = CategoryMapper::entityToModel($entity);
 
         return $model;
